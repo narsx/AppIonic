@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot='start'>
+        <ion-back-button  defaultHref="/places"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Añadido de Lugar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-col>
+  <ion-card>
+    <ion-card-content>
+      <ion-item><ion-input type="text" placeholder="Escribe el titulo" #title></ion-input></ion-item>
+      <ion-item><ion-input type="text" placeholder="http://imagewebsite.com" #imageURL></ion-input></ion-item>
+    <ion-item lines="none" ><ion-button padding="none" color="primary" (click)="saveNewPlace(title,imageURL)">
+      Save
+    </ion-button></ion-item>
+  </ion-card-content>
+  </ion-card>
+</ion-col>
+
+</ion-content>

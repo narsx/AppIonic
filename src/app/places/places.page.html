@@ -1,0 +1,51 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Places</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+<ion-card>
+    <ion-item lines="none" *ngFor="let place of places" [routerLink]="['/places', place.id]"> <!--Bucle para recorrer los id que hay-->
+          <ion-avatar slot="start">
+            <ion-img [src]="place.imageURL"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            {{place.title}}
+          </ion-label>
+      
+        <ion-buttons slot="end">
+          <ion-button (click)="deletePlace(place.id)">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </ion-item>
+</ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="addNewPlace()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<script>
+  const searchbar = document.querySelector('ion-searchbar');
+  const items = Array.from(document.querySelector('ion-list').children);
+
+  searchbar.addEventListener('ionInput', handleInput);
+
+  function handleInput(event) {
+    const query = event.target.value.toLowerCase();
+    requestAnimationFrame(() => {
+      items.forEach(item => {
+        const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+        item.style.display = shouldShow ? 'block' : 'none';
+      });
+    });
+  }
+</script>
